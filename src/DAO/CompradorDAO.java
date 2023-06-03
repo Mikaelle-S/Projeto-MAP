@@ -79,7 +79,15 @@ public class CompradorDAO {
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
 
-            compradores = (ArrayList<Comprador>) Arrays.asList((Comprador[]) ois.readObject());
+            Object obj = ois.readObject();
+            if (obj instanceof ArrayList<?>) {
+                ArrayList<?> list = (ArrayList<?>) obj;
+                for (Object item : list) {
+                    if (item instanceof Comprador) {
+                        compradores.add((Comprador) item);
+                    }
+                }
+            }
 
             ois.close();
             fis.close();
