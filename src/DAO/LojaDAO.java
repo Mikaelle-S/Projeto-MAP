@@ -2,7 +2,6 @@ package DAO;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import exception.LojaNotFoundException;
 import exception.LojaJaExistenteException;
