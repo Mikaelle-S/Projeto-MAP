@@ -2,7 +2,6 @@ package DAO;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import Entidades.Comprador;
 import exception.CompradorNotFoundException;
@@ -79,7 +78,15 @@ public class CompradorDAO {
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
 
-            compradores = (ArrayList<Comprador>) Arrays.asList((Comprador[]) ois.readObject());
+            Object obj = ois.readObject();
+            if (obj instanceof ArrayList<?>) {
+                ArrayList<?> list = (ArrayList<?>) obj;
+                for (Object item : list) {
+                    if (item instanceof Produto) {
+                        produtos.add((Produto) item);
+                    }
+                }
+            }
 
             ois.close();
             fis.close();
