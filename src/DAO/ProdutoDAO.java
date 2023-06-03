@@ -2,6 +2,7 @@ package DAO;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import Entidades.Produto;
@@ -72,7 +73,7 @@ public class ProdutoDAO {
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
 
-            produtos = (List<Produto>) ois.readObject();
+            produtos = (List<Produto>) Arrays.asList((Produto[]) ois.readObject());
 
             ois.close();
             fis.close();
