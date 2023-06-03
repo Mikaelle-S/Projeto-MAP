@@ -2,6 +2,8 @@ package DAO;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import exception.LojaNotFoundException;
 import exception.LojaJaExistenteException;
 
@@ -87,7 +89,7 @@ public class LojaDAO {
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
 
-            lojas = (ArrayList<Loja>) ois.readObject();
+            lojas = (ArrayList<Loja>)  Arrays.asList((Loja[]) ois.readObject());
 
             ois.close();
             fis.close();
