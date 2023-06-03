@@ -89,8 +89,15 @@ public class LojaDAO {
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
 
-            lojas = (ArrayList<Loja>)  Arrays.asList((Loja[]) ois.readObject());
-
+            Object obj = ois.readObject();
+            if (obj instanceof ArrayList<?>) {
+                ArrayList<?> list = (ArrayList<?>) obj;
+                for (Object item : list) {
+                    if (item instanceof Loja) {
+                        lojas.add((Loja) item);
+                    }
+                }
+            }
             ois.close();
             fis.close();
         }catch (IOException | ClassNotFoundException e){
