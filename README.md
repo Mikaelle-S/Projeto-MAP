@@ -11,7 +11,7 @@
 - Java
 - Junit5
 
-![GitHub last commit](https://img.shields.io/github/last-commit/mikaelle-s/MAP?color=blueviolet&style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/mikaelle-s/Projeto-MAP?color=blueviolet&style=for-the-badge)
 
 # Autores
 
