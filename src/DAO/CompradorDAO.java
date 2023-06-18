@@ -82,8 +82,8 @@ public class CompradorDAO {
             if (obj instanceof ArrayList<?>) {
                 ArrayList<?> list = (ArrayList<?>) obj;
                 for (Object item : list) {
-                    if (item instanceof Produto) {
-                        produtos.add((Produto) item);
+                    if (item instanceof Comprador) {
+                        compradores.add((Comprador) item);
                     }
                 }
             }
