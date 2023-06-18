@@ -1,8 +1,8 @@
 package exception;
 
 public class HistoricoNotFoundException extends Exception {
-    public HistoricoNotFoundException(){
-        super("Histórico não encontrado");
+    public HistoricoNotFoundException(String cpf){
+        super("Histórico:" +cpf+ "Histórico não encontrado",  new Throwable("Histórico incorreto ou não encotrado"));
     }
 }
     
