@@ -73,6 +73,4 @@ public class HistoricoDeComprasDAO  {
             e.printStackTrace();
         }
     }
-
-
 }

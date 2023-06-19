@@ -1,9 +1,14 @@
 package test;
 
-import DAO.HistoricoDeComprasDAO;
-import Entidades.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import java.util.List;
 
 
 import DAO.CompradorDAO;
@@ -80,12 +85,12 @@ class TestMarketplace {
         Comprador comprador = new Comprador("Comprador 5", "comprador5@example.com", "senha789", "CPF 5", "Endereço 5");
         CompradorDAO.cadastrarComprador(comprador);
 
-
         Produto produto = new Produto("Produto 11", Itens.ELETRÔNICO, "Marca 11", "Descrição 11", 11.11, 100);
         ProdutoDAO.cadastrarProduto(produto);
 
         // Adicionar produto ao carrinho do comprador
         //comprador.adicionarProdutoAoCarrinho(produto);
+
 
         // Verificar se o produto foi adicionado corretamente ao carrinho
         Assertions.assertEquals(1, comprador.getCarrinhoDeCompras().size());
@@ -115,6 +120,5 @@ class TestMarketplace {
         Assertions.assertEquals(1, comprador.getCarrinhoDeCompras().size());
         Assertions.assertEquals(produto2, comprador.getCarrinhoDeCompras().get(0));
     }
-    
 }
 
