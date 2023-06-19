@@ -65,7 +65,6 @@ public class FachadaDAO {
             System.out.println("1 - Adicionar item ao carrinho");
             System.out.println("2 - Ver carrinho");
             System.out.println("3 - Opções de Usuário");
-            System.out.println("4 - Opções do Sistema");
             System.out.println("0 - Sair");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
