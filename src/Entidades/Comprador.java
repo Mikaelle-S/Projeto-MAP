@@ -1,33 +1,35 @@
 package Entidades;
+import DAO.CarrinhoDeComprasDao;
+import DAO.HistoricoDeComprasDAO;
+
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Comprador implements Serializable{
+
     private static final long serialVersionUID = 1L;
-    
     private String nome;
     private String email;
     private String senha;
     private String Cpf;
     private String endereco;
-    private List<Produto> CarrinhoDeCompras;
-	private List<Loja> HistoricoDeCompras;
-    
-     public Comprador() {
+    private List<Pedidos> CarrinhoDeCompras;
+
+    private List<Historico> historicoCompras;
+
+    public Comprador() {
 		this("", "", "", "", "");
 	}
     
-    public void adicionarProdutoAoCarrinho(Produto produto) {
-        CarrinhoDeCompras.add(produto);
+    public void adicionarPedidoAoCarrinho(Pedidos pedidos) {
+        CarrinhoDeCompras.add(pedidos);
     }
-    public void removerProdutoDoCarrinho(Produto produto) {
-        CarrinhoDeCompras.remove(produto);
+
+    public void removerPedidoDoCarrinho(Pedidos pedidos) {
+        CarrinhoDeCompras.remove(pedidos);
     }
-    
-    public void adicionarVendas(Loja Vendas) {
-        HistoricoDeCompras.add(Vendas);
-    }
-    
 
     public Comprador(String nome, String email, String senha, String Cpf, String endereco) {
         this.nome = nome;
@@ -36,9 +38,6 @@ public class Comprador implements Serializable{
         this.Cpf = Cpf;
         this.endereco = endereco;
         this.CarrinhoDeCompras = new ArrayList<>();
-		this.HistoricoDeCompras = new ArrayList<>();
-        
-        
     }
     
     public String getNome() {
@@ -80,30 +79,29 @@ public class Comprador implements Serializable{
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-    
-    public List<Produto> getCarrinhoDeCompras() {
+
+    public List<Pedidos> getCarrinhoDeCompras() {
 		return CarrinhoDeCompras;
 	}
 
-	public void setCarrinhoDeCompras(List<Produto> CarrinhoDeCompras) {
+	public void setCarrinhoDeCompras(List<Pedidos> CarrinhoDeCompras) {
 		this.CarrinhoDeCompras = CarrinhoDeCompras;
 	}
 
-	public List<Loja> getHistoricoDeCompras() {
-		return HistoricoDeCompras;
-	}
+    public List<Historico> getHistoricoCompras() {
+        return HistoricoDeComprasDAO.exibirHistoricoComprador(this.Cpf);
+    }
 
-	public void setHistoricoDeCompras(List<Loja> HistoricoDeCompras) {
-		this.HistoricoDeCompras = HistoricoDeCompras;
-	}
+    public void setHistoricoCompras(List<Historico> historicoCompras) {
+        this.historicoCompras = historicoCompras;
+    }
 
     @Override
     public String toString() {
         return "Comprador [nome=" + nome + ", email=" + email + ", senha=" + senha + ", Cpf=" + Cpf + ", endereco="
-                + endereco + ", CarrinhoDeCompras=" + CarrinhoDeCompras + ", HistoricoDeCompras=" + HistoricoDeCompras
-				+ "]";
+                + endereco + ", CarrinhoDeCompras=" + CarrinhoDeCompras + "]";
     }
-    
+
     @Override
 	public int hashCode() {
 		final int prime = 31;
@@ -112,13 +110,12 @@ public class Comprador implements Serializable{
 		result = prime * result + ((Cpf == null) ? 0 : Cpf.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((endereco == null) ? 0 : endereco.hashCode());
-		result = prime * result + ((HistoricoDeCompras == null) ? 0 : HistoricoDeCompras.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
 		return result;
 	}
 
-   @Override
+    @Override
     public boolean equals(Object o) {
     if (this == o) {
         return true;
@@ -126,14 +123,13 @@ public class Comprador implements Serializable{
     if (o == null || getClass() != o.getClass()) {
         return false;
     }
+
     Comprador comprador = (Comprador) o;
     return Objects.equals(nome, comprador.nome) &&
            Objects.equals(email, comprador.email) &&
            Objects.equals(senha, comprador.senha) &&
            Objects.equals(Cpf, comprador.Cpf) &&
            Objects.equals(endereco, comprador.endereco)&&
-           Objects.equals(CarrinhoDeCompras, comprador.CarrinhoDeCompras)&&
-           Objects.equals(HistoricoDeCompras, comprador.HistoricoDeCompras);
-}
-    
+           Objects.equals(CarrinhoDeCompras, comprador.CarrinhoDeCompras);
+    }
 }

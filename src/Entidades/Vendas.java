@@ -1,9 +1,10 @@
 package Entidades;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Vendas {
+public class Vendas implements Serializable {
     private String hora;
     private String data;
     private Pedidos pedido;

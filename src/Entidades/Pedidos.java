@@ -1,19 +1,21 @@
 package Entidades;
 
-public class Pedidos {
+import java.io.Serializable;
+
+public class Pedidos implements Serializable {
    
-    private Produto produto;
-    private int quantidade;
-    private double valor;
-
-    public Pedidos() {
-    }
-
-    public Pedidos(Produto produto, int quantidade) {
-        this.produto = produto;
-        this.quantidade = quantidade;
-        this.valor = quantidade * produto.getValor();
-    }
+        private Produto produto;
+        private int quantidade;
+        private double valor;
+    
+        public Pedidos() {
+        }
+    
+       public Pedidos(Produto produto, int quantidade) {
+            this.produto = produto;
+            this.quantidade = quantidade;
+            this.valor = quantidade * produto.getValor();
+        }
     
     public Produto getProduto() {
         return produto;
