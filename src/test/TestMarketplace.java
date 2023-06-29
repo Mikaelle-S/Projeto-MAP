@@ -2,13 +2,12 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import Entidades.Comprador;
+import Entidades.Itens;
+import Entidades.Loja;
+import Entidades.Produto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
-import java.util.List;
 
 
 import DAO.CompradorDAO;
@@ -19,9 +18,6 @@ import exception.LojaJaExistenteException;
 import exception.LojaNotFoundException;
 import exception.ProdutoNotFoundException;
 
-import java.util.List;
-
-import static org.junit.Assert.*;
 
 
 class TestMarketplace {
@@ -120,5 +116,6 @@ class TestMarketplace {
         Assertions.assertEquals(1, comprador.getCarrinhoDeCompras().size());
         Assertions.assertEquals(produto2, comprador.getCarrinhoDeCompras().get(0));
     }
+
 }
 
