@@ -2,6 +2,7 @@ package DAO;
 
 import Entidades.*;
 import exception.LojaJaExistenteException;
+import exception.LojaNotFoundException;
 import exception.ProdutoNotFoundException;
 
 import java.util.List;
@@ -39,7 +40,7 @@ public class FachadaDAO {
 
             exibirMenu(comprador1);
 
-        } catch (LojaJaExistenteException | ProdutoNotFoundException e) {
+        } catch (LojaJaExistenteException | ProdutoNotFoundException | LojaNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -53,7 +54,7 @@ public class FachadaDAO {
         System.out.println();
     }
 
-    private static void exibirMenu(Comprador comprador) throws ProdutoNotFoundException {
+    private static void exibirMenu(Comprador comprador) throws ProdutoNotFoundException, LojaNotFoundException {
         Scanner scanner = new Scanner(System.in);
         int opcao;
 
@@ -96,7 +97,7 @@ public class FachadaDAO {
     private static void adicionarItemCarrinho(Comprador comprador) throws ProdutoNotFoundException {
         try {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Digite no nome do produto: ");
+            System.out.println("Digite o nome do produto: ");
             String nome = scanner.nextLine();
             Produto produto = ProdutoDAO.buscarProduto(nome);
             System.out.println("Digite quantidade do produto: ");
@@ -107,11 +108,11 @@ public class FachadaDAO {
         } catch (ProdutoNotFoundException e) {
             System.err.println("Produto não encontrado " + e);
         } catch (Exception e) {
-            System.err.println("Ocorreru um erro inesperado " + e);
+            System.err.println("Ocorreu um erro inesperado " + e);
         }
     }
 
-    private static void verCarrinho(Comprador comprador) throws ProdutoNotFoundException {
+    private static void verCarrinho(Comprador comprador) throws ProdutoNotFoundException, LojaNotFoundException {
         Scanner scanner = new Scanner(System.in);
         int opcao;
 
@@ -145,7 +146,7 @@ public class FachadaDAO {
 
     }
 
-    private static void comprarCarrinho(Comprador comprador) throws ProdutoNotFoundException {
+    private static void comprarCarrinho(Comprador comprador) throws ProdutoNotFoundException, LojaNotFoundException {
         List<Pedidos> carrinho = comprador.getCarrinhoDeCompras();
         double valorTotal = 0.0;
 
@@ -166,6 +167,27 @@ public class FachadaDAO {
             }
             System.out.println("Compra realizada com sucesso!");
             carrinho.clear();
+
+            //Avaliar Compra
+            System.out.println("Deseja avaliar a compra? (Digite 'S' para sim ou 'N' para não)");
+            String opcaoAvaliar = scanner.nextLine();
+            if (opcaoAvaliar.equalsIgnoreCase("S")) {
+                System.out.println("Que nota você dá para a loja de 0 a 5?");
+                int nota = scanner.nextInt();
+                System.out.println("Faça um comentário sobre a compra:");
+                scanner.nextLine(); //Consumir o \n do nextInt
+                String comentario = scanner.nextLine();
+                //Adicionar avaliações a loja
+                Loja lojaAtualizada = LojaDAO.buscar("123456789");
+                Avaliacao av = new Avaliacao(nota, comentario);
+                List<Avaliacao> avAtualizadas = lojaAtualizada.getAvaliacoes();
+                avAtualizadas.add(av);
+                lojaAtualizada.setAvaliacoes(avAtualizadas);
+                LojaDAO.atualizar(lojaAtualizada);
+
+                System.out.println("Avaliação feita com sucesso!");
+            }
+
         } else {
             System.out.println("Compra cancelada.");
             verCarrinho(comprador);
@@ -174,7 +196,7 @@ public class FachadaDAO {
 
 
 
-    private static void opcoesUsuario(Comprador comprador) throws ProdutoNotFoundException {
+    private static void opcoesUsuario(Comprador comprador) throws ProdutoNotFoundException, LojaNotFoundException {
         Scanner scanner = new Scanner(System.in);
         int opcao;
 
@@ -202,7 +224,7 @@ public class FachadaDAO {
         } while (opcao != 2);
     }
 
-    private static void verHistoricoCompras(Comprador comprador) throws ProdutoNotFoundException {
+    private static void verHistoricoCompras(Comprador comprador) throws ProdutoNotFoundException, LojaNotFoundException {
         System.out.println(comprador.getHistoricoCompras());
         System.out.println();
         exibirMenu(comprador);

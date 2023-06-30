@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Entidades.Historico;
-import Entidades.Vendas;
 
 public class HistoricoDeComprasDAO  {
 
