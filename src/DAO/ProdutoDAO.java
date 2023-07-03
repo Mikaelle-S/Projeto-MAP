@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import Entidades.Loja;
 import Entidades.Produto;
 import exception.ProdutoNotFoundException;
 
@@ -34,6 +35,18 @@ public class ProdutoDAO {
             }
         }
         throw new ProdutoNotFoundException(nome);
+    }
+
+    public static List<Produto> listarPorLoja(Loja loja) throws ProdutoNotFoundException {
+        List<Produto> produtos = listarProdutos();
+        List<Produto> produtosLoja = new ArrayList<>();
+        for (Produto produto : produtos) {
+            if (produto.getLoja().equals(loja)) {
+                produtosLoja.add(produto);
+            }
+        }
+        return produtosLoja;
+
     }
 
     // Método para atualizar os dados de um produto

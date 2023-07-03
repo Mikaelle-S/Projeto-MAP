@@ -45,7 +45,7 @@ class TestMarketplace {
         Loja loja = new Loja("Loja 11", "loja11@example.com", "senha111", "999888777", "Endereço 11");
         LojaDAO.cadastrar(loja);
 
-        Produto produto = new Produto("Produto 11", Itens.ELETRÔNICO, "Marca 11", "Descrição 11", 11.11, 100);
+        Produto produto = new Produto("Produto 11", Itens.ELETRÔNICO, "Marca 11", "Descrição 11", 11.11, 100, loja);
         ProdutoDAO.cadastrarProduto(produto);
 
         Produto produtoEncontrado = ProdutoDAO.buscarProduto("Produto 11");
@@ -81,7 +81,7 @@ class TestMarketplace {
         Comprador comprador = new Comprador("Comprador 5", "comprador5@example.com", "senha789", "CPF 5", "Endereço 5");
         CompradorDAO.cadastrarComprador(comprador);
 
-        Produto produto = new Produto("Produto 11", Itens.ELETRÔNICO, "Marca 11", "Descrição 11", 11.11, 100);
+        Produto produto = new Produto("Produto 11", Itens.ELETRÔNICO, "Marca 11", "Descrição 11", 11.11, 100, loja);
         ProdutoDAO.cadastrarProduto(produto);
 
         // Adicionar produto ao carrinho do comprador
@@ -102,10 +102,10 @@ class TestMarketplace {
         Comprador comprador = new Comprador("Comprador 1", "comprador1@example.com", "senha789", "CPF 1", "Endereço 3");
         CompradorDAO.cadastrarComprador(comprador);
 
-        Produto produto1 = new Produto("Produto 9", Itens.ELETRÔNICO, "Marca 9", "Descrição 9", 75.50, 3);
+        Produto produto1 = new Produto("Produto 9", Itens.ELETRÔNICO, "Marca 9", "Descrição 9", 75.50, 3, loja);
         ProdutoDAO.cadastrarProduto(produto1);
 
-        Produto produto2 = new Produto("Produto 10", Itens.VESTUARIO, "Marca 10", "Descrição 10", 38.90, 5);
+        Produto produto2 = new Produto("Produto 10", Itens.VESTUARIO, "Marca 10", "Descrição 10", 38.90, 5, loja);
         ProdutoDAO.cadastrarProduto(produto2);
 
 

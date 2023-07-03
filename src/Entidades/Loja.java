@@ -1,5 +1,7 @@
 package Entidades;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Loja implements Serializable{
@@ -8,6 +10,10 @@ public class Loja implements Serializable{
     private String senha;
     private String cpfCnpj;
     private String endereco;
+    private List<Avaliacao> avaliacoes;
+
+    private double qntAvaliacao;
+    private double nota;
 
     public Loja(String nome, String email, String senha, String cpfCnpj, String endereco) {
         this.nome = nome;
@@ -15,6 +21,7 @@ public class Loja implements Serializable{
         this.senha = senha;
         this.cpfCnpj = cpfCnpj;
         this.endereco = endereco;
+        this.avaliacoes = new ArrayList<>();
     }
     
     public String getNome() {
@@ -55,6 +62,23 @@ public class Loja implements Serializable{
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    public List<Avaliacao> getAvaliacoes() {
+        return avaliacoes;
+    }
+
+    public void setAvaliacoes(List<Avaliacao> avaliacoes) {
+        this.avaliacoes = avaliacoes;
+    }
+
+    public double getNota() {
+        return this.nota / this.qntAvaliacao;
+    }
+
+    public void setNota(double nota) {
+        qntAvaliacao++;
+        this.nota += nota;
     }
 
     @Override

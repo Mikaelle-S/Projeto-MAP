@@ -6,7 +6,7 @@ public class Pedidos implements Serializable {
    
         private Produto produto;
         private int quantidade;
-        private double valor;
+        private Double valor;
     
         public Pedidos() {
         }

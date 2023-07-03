@@ -53,6 +53,17 @@ public class LojaDAO {
         
     }
 
+    public static Loja buscarNome(String nome) throws LojaNotFoundException {
+        ArrayList<Loja> lojas = listarLoja();
+
+        for (Loja loja: lojas) {
+            if (loja.getNome().equals(nome)){
+                return loja;
+            }
+        }
+        throw new LojaNotFoundException(nome);
+    }
+
     // Método para atualizar os dados de uma loja
     public static void atualizar(Loja lojaAtualizada) {
         ArrayList<Loja> lojas = listarLoja();
