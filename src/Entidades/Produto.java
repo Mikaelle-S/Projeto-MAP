@@ -4,13 +4,13 @@ import java.util.Objects;
 
 public class Produto implements Serializable {
     private String nome;
-    private String tipo;
+    private Itens tipo;
     private String marca;
     private String descricao;
     private double valor;
     private int quantidade;
 
-    public Produto(String nome, String tipo, String marca, String descricao, double valor, int quantidade) {
+    public Produto(String nome, Itens tipo, String marca, String descricao, double valor, int quantidade) {
         this.nome = nome;
         this.tipo = tipo;
         this.marca = marca;
@@ -25,10 +25,10 @@ public class Produto implements Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public String getTipo() {
+    public Itens getTipo() {
         return tipo;
     }
-    public void setTipo(String tipo) {
+    public void setTipo(Itens tipo) {
         this.tipo = tipo;
     }
     public String getMarca() {
@@ -62,7 +62,6 @@ public class Produto implements Serializable {
                 + valor + ", quantidade=" + quantidade + "]";
     }
     @Override
-    
     public boolean equals(Object obj) {
     if (this == obj) {
         return true;

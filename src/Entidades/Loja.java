@@ -80,6 +80,6 @@ public class Loja implements Serializable{
            Objects.equals(senha, other.senha) &&
            Objects.equals(cpfCnpj, other.cpfCnpj) &&
            Objects.equals(endereco, other.endereco);
-}
+    }
 }
 
