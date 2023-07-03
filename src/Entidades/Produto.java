@@ -9,14 +9,18 @@ public class Produto implements Serializable {
     private String descricao;
     private double valor;
     private int quantidade;
+    private int qntAvaliacao;
+    private Double nota;
+    private Loja loja;
 
-    public Produto(String nome, Itens tipo, String marca, String descricao, double valor, int quantidade) {
+    public Produto(String nome, Itens tipo, String marca, String descricao, double valor, int quantidade, Loja loja) {
         this.nome = nome;
         this.tipo = tipo;
         this.marca = marca;
         this.descricao = descricao;
         this.valor = valor;
         this.quantidade = quantidade;
+        this.loja = loja;
     }
     
     public String getNome() {
@@ -54,6 +58,23 @@ public class Produto implements Serializable {
     }
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
+    }
+
+    public Loja getLoja() {
+        return loja;
+    }
+
+    public void setLoja(Loja loja) {
+        this.loja = loja;
+    }
+
+    public double getNota() {
+        return this.nota / this.qntAvaliacao;
+    }
+
+    public void setNota(double nota) {
+        qntAvaliacao++;
+        this.nota += nota;
     }
 
     @Override

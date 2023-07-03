@@ -12,6 +12,9 @@ public class Loja implements Serializable{
     private String endereco;
     private List<Avaliacao> avaliacoes;
 
+    private double qntAvaliacao;
+    private double nota;
+
     public Loja(String nome, String email, String senha, String cpfCnpj, String endereco) {
         this.nome = nome;
         this.email = email;
@@ -67,6 +70,15 @@ public class Loja implements Serializable{
 
     public void setAvaliacoes(List<Avaliacao> avaliacoes) {
         this.avaliacoes = avaliacoes;
+    }
+
+    public double getNota() {
+        return this.nota / this.qntAvaliacao;
+    }
+
+    public void setNota(double nota) {
+        qntAvaliacao++;
+        this.nota += nota;
     }
 
     @Override

@@ -1,5 +1,4 @@
 package Entidades;
-import DAO.CarrinhoDeComprasDao;
 import DAO.HistoricoDeComprasDAO;
 
 import java.io.Serializable;
@@ -16,8 +15,8 @@ public class Comprador implements Serializable{
     private String Cpf;
     private String endereco;
     private List<Pedidos> CarrinhoDeCompras;
-
-    private List<Historico> historicoCompras;
+    private int qntAvaliacao;
+    private double nota;
 
     public Comprador() {
 		this("", "", "", "", "");
@@ -92,8 +91,13 @@ public class Comprador implements Serializable{
         return HistoricoDeComprasDAO.exibirHistoricoComprador(this.Cpf);
     }
 
-    public void setHistoricoCompras(List<Historico> historicoCompras) {
-        this.historicoCompras = historicoCompras;
+    public double getNota() {
+        return this.nota / this.qntAvaliacao;
+    }
+
+    public void setNota(double nota) {
+        qntAvaliacao++;
+        this.nota += nota;
     }
 
     @Override
